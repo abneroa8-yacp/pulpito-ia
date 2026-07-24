@@ -2,12 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import { createClient } from "@/lib/supabase/client";
 import { useLanguage } from "@/hooks/useLanguage";
 import LanguageSelector from "@/components/auth/LanguageSelector";
 
 export default function RegisterPage() {
   const supabase = createClient();
+  const router = useRouter();
+
   const { t } = useLanguage();
 
   const [email, setEmail] = useState("");
@@ -17,7 +21,7 @@ export default function RegisterPage() {
   async function register() {
     setLoading(true);
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -29,6 +33,13 @@ export default function RegisterPage() {
       return;
     }
 
+    // Si el usuario ya quedó autenticado, entrar directamente
+    if (data.session) {
+      router.push("/dashboard");
+      return;
+    }
+
+    // Solo mostrar este mensaje si el proyecto requiere confirmar el correo
     alert(t.checkEmail);
   }
 
@@ -50,7 +61,7 @@ export default function RegisterPage() {
         <input
           type="email"
           value={email}
-          onChange={(e)=>setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           placeholder={t.email}
           className="w-full rounded-xl bg-slate-950 border border-slate-700 p-4 text-white mb-4"
         />
@@ -58,7 +69,7 @@ export default function RegisterPage() {
         <input
           type="password"
           value={password}
-          onChange={(e)=>setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           placeholder={t.password}
           className="w-full rounded-xl bg-slate-950 border border-slate-700 p-4 text-white mb-6"
         />
@@ -72,7 +83,6 @@ export default function RegisterPage() {
         </button>
 
         <div className="mt-6 text-center text-slate-400">
-
           {t.alreadyAccount}
 
           <Link
@@ -81,7 +91,6 @@ export default function RegisterPage() {
           >
             {t.login}
           </Link>
-
         </div>
 
       </div>
