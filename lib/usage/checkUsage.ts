@@ -9,13 +9,24 @@ export async function checkUsage(
   const today = new Date().toISOString().split("T")[0];
   const currentMonth = today.slice(0, 7);
 
-  const { data } = await supabase
+  console.log("====================================");
+  console.log("CHECK USAGE");
+  console.log("USER ID:", userId);
+  console.log("TODAY:", today);
+  console.log("MONTH:", currentMonth);
+
+  const { data, error } = await supabase
     .from("usage_stats")
     .select("*")
     .eq("user_id", userId)
     .single();
 
+  console.log("QUERY ERROR:", error);
+  console.log("USAGE DATA:", data);
+
   if (!data) {
+    console.log("NO EXISTE REGISTRO. CREANDO...");
+
     await supabase.from("usage_stats").insert({
       user_id: userId,
       daily_count: 1,
@@ -23,6 +34,8 @@ export async function checkUsage(
       daily_date: today,
       monthly_period: currentMonth,
     });
+
+    console.log("REGISTRO CREADO");
 
     return;
   }
@@ -37,6 +50,10 @@ export async function checkUsage(
   if (data.monthly_period !== currentMonth) {
     monthlyCount = 0;
   }
+
+  console.log("ANTES DE VALIDAR");
+  console.log("DAILY:", dailyCount);
+  console.log("MONTHLY:", monthlyCount);
 
   if (dailyCount >= 2) {
     throw new Error(
@@ -54,7 +71,9 @@ export async function checkUsage(
     );
   }
 
-  await supabase
+  console.log("ACTUALIZANDO CONTADORES...");
+
+  const { error: updateError } = await supabase
     .from("usage_stats")
     .update({
       daily_count: dailyCount + 1,
@@ -64,4 +83,9 @@ export async function checkUsage(
       updated_at: new Date().toISOString(),
     })
     .eq("user_id", userId);
+
+  console.log("UPDATE ERROR:", updateError);
+  console.log("NUEVO DAILY:", dailyCount + 1);
+  console.log("NUEVO MONTHLY:", monthlyCount + 1);
+  console.log("====================================");
 }
