@@ -6,7 +6,6 @@ import { useState } from "react";
 import { languages } from "@/lib/i18n";
 import { useRouter } from "next/navigation";
 import { rutas } from "@/lib/search";
-import { createClient } from "@/lib/supabase/client";
 import { useLanguage } from "@/hooks/useLanguage";
 
 export default function Dashboard() {
@@ -15,13 +14,6 @@ export default function Dashboard() {
 
   const router = useRouter();
   const [busqueda, setBusqueda] = useState("");
-
-  const supabase = createClient();
-
-  async function cerrarSesion() {
-    await supabase.auth.signOut();
-    router.push("/login");
-  }
 
   function buscar() {
     const texto = busqueda.toLowerCase().trim();
@@ -45,23 +37,6 @@ export default function Dashboard() {
         <p className="text-slate-400 mt-3 text-lg">
           {t.dashboardSubtitle}
         </p>
-
-        <div className="mt-6">
-          <button
-            onClick={cerrarSesion}
-            className="
-              bg-red-600
-              hover:bg-red-700
-              text-white
-              px-5
-              py-2
-              rounded-xl
-              transition
-            "
-          >
-            Logout
-          </button>
-        </div>
 
         <input
           value={busqueda}
