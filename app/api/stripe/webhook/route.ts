@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { createClient } from "@/lib/supabase/server";
+import { admin } from "@/lib/supabase/admin";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
@@ -32,8 +32,7 @@ export async function POST(req: NextRequest) {
       { status: 400 }
     );
   }
-
-  const supabase = await createClient();
+const supabase = admin;
 
   switch (event.type) {
     case "checkout.session.completed": {
