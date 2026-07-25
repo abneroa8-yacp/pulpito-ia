@@ -60,12 +60,9 @@ const supabase = admin;
         .eq("id", userId)
         .select();
 
-      if (error) {
-        console.error("Error al actualizar usuario:", error);
-      } else {
-        console.log("Usuario actualizado correctamente");
-        console.log(data);
-      }
+      console.log("Resultado update:");
+console.log("error:", error);
+console.log("data:", data);
 
       break;
     }
