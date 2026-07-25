@@ -288,7 +288,7 @@ connecting: "Connecting...",
 
 paymentError: "An error occurred while starting the payment.",
 
-backDashboard: "← Back to Dashboard",
+backdashboard: "Back to Dashboard",
 subscription: "Subscription",
 subscriptionDescription:
   "Manage your subscription, update your payment method or cancel anytime.",

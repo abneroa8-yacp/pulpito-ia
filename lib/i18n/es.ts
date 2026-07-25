@@ -229,7 +229,6 @@ quickIllustrations: "💡 Ilustraciones",
 quickLibrary: "📚 Biblioteca",
 
 search: "Buscar...",
-backDashboard: "← Volver al Dashboard",
 language: "Idioma",
 about: "Acerca de",
 version: "Versión",
@@ -289,8 +288,7 @@ upgradePremium: "🚀 Actualizar a Premium",
 connecting: "Conectando...",
 
 paymentError: "Ocurrió un error al iniciar el pago.",
-
-backDashboard: "← Volver al panel",
+backDashboard: "← Volver al Dashboard",
 subscription: "Suscripción",
 
 subscriptionDescription:
