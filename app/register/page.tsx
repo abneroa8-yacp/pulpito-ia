@@ -33,12 +33,20 @@ export default function RegisterPage() {
       return;
     }
 if (data.user) {
-  await supabase.from("profiles").insert({
-    id: data.user.id,
-    full_name: "",
-    username: null,
-    avatar_url: null,
-  });
+  const { error: profileError } = await supabase
+    .from("profiles")
+    .insert({
+      id: data.user.id,
+      full_name: "",
+      username: null,
+      avatar_url: null,
+    });
+
+  console.log("Profile error:", profileError);
+
+  if (profileError) {
+    alert(profileError.message);
+  }
 }
     // Si el usuario ya quedó autenticado, entrar directamente
     if (data.session) {
