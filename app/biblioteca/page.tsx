@@ -18,7 +18,8 @@ export default async function BibliotecaPage() {
           </h1>
 
           <p className="mt-6 text-slate-400 text-lg">
-            Tu biblioteca personal está disponible únicamente para usuarios Premium.
+            Guarda todos tus documentos y accede a ellos desde cualquier dispositivo.
+            Esta función está disponible exclusivamente para usuarios Premium.
           </p>
 
           <div className="mt-10 rounded-2xl border border-green-600 bg-slate-900 p-8">
@@ -28,7 +29,7 @@ export default async function BibliotecaPage() {
             </h2>
 
             <ul className="mt-6 space-y-3 text-left text-slate-300">
-              <li>✅ Guardar sermones ilimitados.</li>
+              <li>✅ Guardar documentos ilimitados.</li>
               <li>✅ Guardar estudios bíblicos.</li>
               <li>✅ Guardar devocionales.</li>
               <li>✅ Exportar cuando quieras.</li>
@@ -39,7 +40,7 @@ export default async function BibliotecaPage() {
               href="/premium"
               className="mt-8 inline-block rounded-xl bg-green-600 px-8 py-4 font-semibold text-white hover:bg-green-700 transition"
             >
-              ⭐ Actualizar a Premium
+              🚀 Obtener Premium
             </Link>
 
           </div>
