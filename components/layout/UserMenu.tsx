@@ -124,19 +124,21 @@ export default function UserMenu() {
             👤 {idioma === "es" ? "Mi perfil" : "My Profile"}
           </button>
 
-          <button
-            onClick={() => router.push("/premium")}
-            className="w-full text-left px-5 py-4 hover:bg-slate-800 text-white transition"
-          >
-            {plan === "premium" ? "👑" : "🟢"}{" "}
-            {idioma === "es"
-              ? plan === "premium"
-                ? "Plan Premium"
-                : "Plan Free"
-              : plan === "premium"
-              ? "Premium Plan"
-              : "Free Plan"}
-          </button>
+          {plan === "premium" ? (
+  <button
+    onClick={() => router.push("/configuracion")}
+    className="w-full text-left px-5 py-4 hover:bg-slate-800 text-white transition"
+  >
+    👑 {idioma === "es" ? "Administrar suscripción" : "Manage subscription"}
+  </button>
+) : (
+  <button
+    onClick={() => router.push("/premium")}
+    className="w-full text-left px-5 py-4 hover:bg-slate-800 text-white transition"
+  >
+    ⭐ {idioma === "es" ? "Hazte Premium" : "Upgrade to Premium"}
+  </button>
+)}
 
           <button
             onClick={logout}

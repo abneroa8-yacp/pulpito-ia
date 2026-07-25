@@ -5,6 +5,7 @@ import { languages } from "@/lib/i18n";
 
 export default function ConfiguracionPage() {
   const [idioma, setIdioma] = useState<"es" | "en">("es");
+  const [loadingPortal, setLoadingPortal] = useState(false);
 
   useEffect(() => {
     const guardado = localStorage.getItem("idioma");
@@ -14,28 +15,50 @@ export default function ConfiguracionPage() {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("idioma", idioma);
+  }, [idioma]);
+
   const t = languages[idioma];
 
-  useEffect(() => {
-  localStorage.setItem("idioma", idioma);
-}, [idioma]);
+  async function administrarSuscripcion() {
+    try {
+      setLoadingPortal(true);
 
-return (
-  <main className="min-h-screen bg-[#0f172a] text-white p-8">
-    <div className="max-w-2xl mx-auto">
+      const res = await fetch("/api/stripe/portal", {
+        method: "POST",
+      });
 
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-green-400">
-          ⚙️ {t.settings}
-        </h1>
+      const data = await res.json();
 
-        <a
-          href="/dashboard"
-          className="text-green-400 hover:text-green-300 font-semibold"
-        >
-          ← {t.backHome}
-        </a>
-      </div>
+      if (!res.ok) {
+        throw new Error(data.error || "Error");
+      }
+
+      window.location.href = data.url;
+    } catch (error) {
+      console.error(error);
+      alert("No se pudo abrir el portal de suscripción.");
+    } finally {
+      setLoadingPortal(false);
+    }
+  }
+
+  return (
+    <main className="min-h-screen bg-[#0f172a] text-white p-8">
+      <div className="max-w-2xl mx-auto">
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-3xl font-bold text-green-400">
+            ⚙️ {t.settings}
+          </h1>
+
+          <a
+            href="/dashboard"
+            className="text-green-400 hover:text-green-300 font-semibold"
+          >
+            ← {t.backHome}
+          </a>
+        </div>
 
         {/* Idioma */}
         <div className="bg-slate-800 rounded-2xl border border-slate-700 p-6 mb-6">
@@ -68,15 +91,39 @@ return (
           </div>
         </div>
 
-      <h2 className="text-xl font-semibold mb-3">
-  ℹ️ {t.about}
-</h2>
+        {/* Suscripción */}
+        <div className="bg-slate-800 rounded-2xl border border-green-700 p-6 mb-6">
+          <h2 className="text-xl font-semibold mb-4">
+            👑 Suscripción
+          </h2>
 
-<p className="text-slate-300">Púlpito IA</p>
-<p className="text-slate-400">
-  {t.version} 1.0.0
-</p>
+          <p className="text-slate-300 mb-5">
+            Administra tu suscripción, cambia tu método de pago o cancélala cuando quieras.
+          </p>
 
+          <button
+            onClick={administrarSuscripcion}
+            disabled={loadingPortal}
+            className="w-full rounded-xl bg-green-600 hover:bg-green-700 transition py-3 font-semibold disabled:opacity-60"
+          >
+            {loadingPortal
+              ? "Abriendo..."
+              : "👑 Administrar suscripción"}
+          </button>
+        </div>
+
+        {/* Acerca de */}
+        <div>
+          <h2 className="text-xl font-semibold mb-3">
+            ℹ️ {t.about}
+          </h2>
+
+          <p className="text-slate-300">Púlpito IA</p>
+
+          <p className="text-slate-400">
+            {t.version} 1.0.0
+          </p>
+        </div>
       </div>
     </main>
   );
