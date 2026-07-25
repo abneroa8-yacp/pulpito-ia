@@ -4,37 +4,39 @@ import Link from "next/link";
 import { Check, Crown } from "lucide-react";
 import { loadStripe } from "@stripe/stripe-js";
 import { useState } from "react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function PremiumPage() {
   const [loading, setLoading] = useState(false);
+  const { t } = useLanguage();
 
-async function checkout() {
-  try {
-    setLoading(true);
+  async function checkout() {
+    try {
+      setLoading(true);
 
-    const res = await fetch("/api/stripe/checkout", {
-      method: "POST",
-    });
+      const res = await fetch("/api/stripe/checkout", {
+        method: "POST",
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    const stripe = await loadStripe(
-      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
-    );
+      const stripe = await loadStripe(
+        process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+      );
 
-    if (!stripe) {
-      throw new Error("Stripe no pudo cargarse");
+      if (!stripe) {
+        throw new Error("Stripe failed to load");
+      }
+
+      window.location.href = data.url;
+    } catch (error) {
+      console.error(error);
+      alert(t.paymentError);
+    } finally {
+      setLoading(false);
     }
-
-   window.location.href = data.url;
-
-  } catch (error) {
-    console.error(error);
-    alert("Ocurrió un error al iniciar el pago.");
-  } finally {
-    setLoading(false);
   }
-}
+
   return (
     <div className="min-h-screen bg-slate-950 text-white flex items-center justify-center px-6 py-16">
       <div className="max-w-6xl w-full">
@@ -47,12 +49,11 @@ async function checkout() {
           </div>
 
           <h1 className="text-5xl font-bold">
-            Púlpito IA Premium
+            {t.premiumTitle}
           </h1>
 
           <p className="text-slate-400 mt-5 text-lg max-w-2xl mx-auto">
-            Desbloquea todo el potencial de Púlpito IA con generaciones
-            ilimitadas y acceso prioritario a las nuevas funciones.
+            {t.premiumSubtitle}
           </p>
         </div>
 
@@ -63,29 +64,29 @@ async function checkout() {
           <div className="rounded-3xl border border-slate-800 bg-slate-900 p-10">
 
             <h2 className="text-3xl font-bold mb-3">
-              Free
+              {t.freePlan}
             </h2>
 
             <p className="text-slate-400 mb-8">
-              Ideal para comenzar.
+              {t.freeDescription}
             </p>
 
             <div className="text-5xl font-bold mb-10">
               $0
               <span className="text-xl text-slate-400">
-                /mes
+                {t.perMonth}
               </span>
             </div>
 
             <div className="space-y-5">
 
-              <Feature text="2 generaciones por día" />
+              <Feature text={t.twoPerDay} />
 
-              <Feature text="9 generaciones por mes" />
+              <Feature text={t.fourPerWeek} />
 
-              <Feature text="Todas las herramientas disponibles" />
+              <Feature text={t.sevenPerMonth} />
 
-              <Feature text="Biblioteca personal" />
+              <Feature text={t.allAITools} />
 
             </div>
 
@@ -96,7 +97,7 @@ async function checkout() {
           <div className="rounded-3xl border-2 border-green-500 bg-slate-900 p-10 relative overflow-hidden">
 
             <div className="absolute top-5 right-5 bg-green-500 text-black px-4 py-1 rounded-full text-sm font-bold">
-              MÁS POPULAR
+              {t.mostPopular}
             </div>
 
             <h2 className="text-3xl font-bold mb-3 flex items-center gap-2">
@@ -105,37 +106,40 @@ async function checkout() {
             </h2>
 
             <p className="text-slate-400 mb-8">
-              Para pastores, maestros y líderes que usan Púlpito IA todos los días.
+              {t.premiumDescription}
             </p>
 
             <div className="text-5xl font-bold mb-10">
               $129
               <span className="text-xl text-slate-400">
-                MXN / mes
+                MXN {t.perMonth}
               </span>
             </div>
 
             <div className="space-y-5">
 
-              <Feature text="Generaciones ilimitadas" />
+              <Feature text={t.unlimited} />
 
-              <Feature text="Todas las herramientas IA" />
+              <Feature text={t.allAITools} />
 
-              <Feature text="Acceso prioritario" />
+              <Feature text={t.personalLibrary} />
 
-              <Feature text="Nuevas funciones antes que nadie" />
+              <Feature text={t.priorityAccess} />
+              <Feature text={t.earlyAccess} />
 
-              <Feature text="Soporte prioritario" />
+              <Feature text={t.prioritySupport} />
 
             </div>
 
             <button
-  onClick={checkout}
-  disabled={loading}
-  className="mt-12 w-full rounded-2xl bg-green-500 hover:bg-green-600 transition py-4 text-xl font-bold text-black disabled:opacity-60"
->
-  {loading ? "Conectando..." : "🚀 Actualizar a Premium"}
-</button>
+              onClick={checkout}
+              disabled={loading}
+              className="mt-12 w-full rounded-2xl bg-green-500 hover:bg-green-600 transition py-4 text-xl font-bold text-black disabled:opacity-60"
+            >
+              {loading
+                ? t.connecting
+                : t.upgradePremium}
+            </button>
 
           </div>
 
@@ -147,7 +151,7 @@ async function checkout() {
             href="/dashboard"
             className="text-green-400 hover:text-green-300"
           >
-            ← Volver al panel
+            {t.backDashboard}
           </Link>
 
         </div>
@@ -157,11 +161,7 @@ async function checkout() {
   );
 }
 
-function Feature({
-  text,
-}: {
-  text: string;
-}) {
+function Feature({ text }: { text: string }) {
   return (
     <div className="flex items-center gap-3">
       <Check className="text-green-400" size={20} />

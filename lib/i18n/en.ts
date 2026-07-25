@@ -248,6 +248,47 @@ confirmPassword: "Confirm password",
 passwordUpdated: "Password updated successfully.",
 loadingLogin: "Signing in...",
 recoveryEmailSent: "Check your email. We sent you a password reset link.",
+premiumTitle: "Púlpito IA Premium",
+
+premiumSubtitle:
+  "Unlock the full power of Púlpito IA with unlimited generations and priority access to new features.",
+
+freePlan: "Free",
+
+freeDescription: "Perfect for trying Púlpito IA.",
+
+premiumDescription:
+  "For pastors, teachers and ministry leaders who use Púlpito IA every day.",
+
+mostPopular: "MOST POPULAR",
+
+perMonth: "/month",
+
+twoPerDay: "2 generations per day",
+
+fourPerWeek: "4 generations per week",
+
+sevenPerMonth: "7 generations per month",
+
+allAITools: "All AI tools",
+
+unlimited: "Unlimited generations",
+
+personalLibrary: "Personal Library",
+
+priorityAccess: "Priority access",
+
+earlyAccess: "Early access to new features",
+
+prioritySupport: "Priority support",
+
+upgradePremium: "🚀 Upgrade to Premium",
+
+connecting: "Connecting...",
+
+paymentError: "An error occurred while starting the payment.",
+
+backDashboard: "← Back to Dashboard",
 logout: "Log out",
 };
 export default en;

@@ -14,7 +14,6 @@ export function useLanguage() {
       return;
     }
 
-    // Primera visita: detectar idioma del navegador
     const navegador = navigator.language.toLowerCase();
 
     if (navegador.startsWith("en")) {
@@ -26,12 +25,12 @@ export function useLanguage() {
     }
   }, []);
 
-function cambiarIdioma(nuevo: "es" | "en") {
-  localStorage.setItem("idioma", nuevo);
-  setIdioma(nuevo);
+  function cambiarIdioma(nuevo: "es" | "en") {
+    localStorage.setItem("idioma", nuevo);
+    setIdioma(nuevo);
 
-  window.location.reload();
-}
+    window.location.reload();
+  }
 
   return {
     idioma,

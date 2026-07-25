@@ -255,6 +255,43 @@ confirmPassword: "Confirmar contraseña",
 passwordUpdated: "Contraseña actualizada correctamente.",
 loadingLogin: "Entrando...",
 recoveryEmailSent: "Revisa tu correo. Te enviamos un enlace para restablecer tu contraseña.",
+premiumTitle: "Púlpito IA Premium",
+premiumSubtitle:
+  "Desbloquea todo el potencial de Púlpito IA con generaciones ilimitadas y acceso prioritario a las nuevas funciones.",
+
+freePlan: "Gratis",
+freeDescription: "Perfecto para probar Púlpito IA.",
+
+premiumDescription:
+  "Para pastores, maestros y líderes que usan Púlpito IA todos los días.",
+
+mostPopular: "MÁS POPULAR",
+
+perMonth: "/mes",
+
+twoPerDay: "2 generaciones por día",
+fourPerWeek: "4 generaciones por semana",
+sevenPerMonth: "7 generaciones por mes",
+
+allAITools: "Todas las herramientas IA",
+
+unlimited: "Generaciones ilimitadas",
+
+personalLibrary: "Biblioteca personal",
+
+priorityAccess: "Acceso prioritario",
+
+earlyAccess: "Nuevas funciones antes que nadie",
+
+prioritySupport: "Soporte prioritario",
+
+upgradePremium: "🚀 Actualizar a Premium",
+
+connecting: "Conectando...",
+
+paymentError: "Ocurrió un error al iniciar el pago.",
+
+backDashboard: "← Volver al panel",
 logout: "Cerrar sesión",
 };
 export default es;
