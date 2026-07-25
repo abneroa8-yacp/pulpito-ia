@@ -26,8 +26,12 @@ export async function POST() {
 
     if (!customers.data.length) {
       return NextResponse.json(
-        { error: "No se encontró el cliente de Stripe." },
-        { status: 404 }
+        {
+          error: `No se encontró un cliente de Stripe con el correo ${user.email}`,
+        },
+        {
+          status: 404,
+        }
       );
     }
 
@@ -43,8 +47,15 @@ export async function POST() {
     console.error(error);
 
     return NextResponse.json(
-      { error: "No se pudo abrir el portal." },
-      { status: 500 }
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Error desconocido al abrir el portal de Stripe.",
+      },
+      {
+        status: 500,
+      }
     );
   }
 }
