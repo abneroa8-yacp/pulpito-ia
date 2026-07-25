@@ -9,6 +9,7 @@ export async function generateAIResponse(prompt: string) {
     max_output_tokens: 8000,
   });
 
+console.log(response);
   console.log("✅ OpenAI respondió");
 
 console.log("LONGITUD RESPUESTA:", response.output_text.length);

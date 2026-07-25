@@ -48,15 +48,11 @@ const t = languages[idioma];
           onChange={(e) => update("tipo", e.target.value)}
    className="w-full rounded-xl bg-slate-800 border border-slate-600 p-3 text-white placeholder:text-slate-400 focus:border-green-500 focus:ring-2 focus:ring-green-500 outline-none"
         >
-          <option>🌅 {t.dailyDevotional}</option>
-<option>📅 {t.sevenDaySeries}</option>
-<option>📖 {t.thirtyDaySeries}</option>
-<option>📚 {t.yearSeries}</option>
+<option>🌅 {t.dailyDevotional}</option>
 <option>👨 {t.forMen}</option>
 <option>👩 {t.forWomen}</option>
 <option>👥 {t.forYouth}</option>
 <option>👨‍👩‍👧 {t.family}</option>
-<option>🎯 {t.byTopic}</option>
         </select>
       </div>
 

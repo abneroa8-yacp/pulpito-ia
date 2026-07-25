@@ -139,15 +139,11 @@ devotionalObjectivePlaceholder:
   devotionalType: "Devotional Type",
 
 dailyDevotional: "Daily Devotional",
-sevenDaySeries: "7-Day Series",
-thirtyDaySeries: "30-Day Series",
-yearSeries: "365-Day Series",
 
 forMen: "For Men",
 forWomen: "For Women",
 forYouth: "For Youth",
 family: "Family",
-byTopic: "By Topic",
 newBelievers: "New Believers",
 
 readingTime: "Reading Time",

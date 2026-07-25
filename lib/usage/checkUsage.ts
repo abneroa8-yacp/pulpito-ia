@@ -6,6 +6,20 @@ export async function checkUsage(
 ) {
   const supabase = await createClient();
 
+  // ============================================
+  // PREMIUM = ILIMITADO
+  // ============================================
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("plan")
+    .eq("id", userId)
+    .single();
+
+  if (profile?.plan === "premium") {
+    console.log("USUARIO PREMIUM - SIN LÍMITES");
+    return;
+  }
+
   const today = new Date().toISOString().split("T")[0];
   const currentMonth = today.slice(0, 7);
 
@@ -55,6 +69,9 @@ export async function checkUsage(
   console.log("DAILY:", dailyCount);
   console.log("MONTHLY:", monthlyCount);
 
+  // ==========================
+  // FREE: 2 POR DÍA
+  // ==========================
   if (dailyCount >= 2) {
     throw new Error(
       idioma === "en"
@@ -63,11 +80,14 @@ export async function checkUsage(
     );
   }
 
-  if (monthlyCount >= 9) {
+  // ==========================
+  // FREE: 7 POR MES
+  // ==========================
+  if (monthlyCount >= 7) {
     throw new Error(
       idioma === "en"
-        ? "You have reached the monthly limit of 9 generations."
-        : "Has alcanzado el límite de 9 generaciones este mes."
+        ? "You have reached the monthly limit of 7 generations."
+        : "Has alcanzado el límite de 7 generaciones este mes."
     );
   }
 

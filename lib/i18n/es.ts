@@ -143,15 +143,10 @@ devotionalObjectivePlaceholder:
   devotionalType: "Tipo de Devocional",
 
 dailyDevotional: "Devocional del Día",
-sevenDaySeries: "Serie de 7 Días",
-thirtyDaySeries: "Serie de 30 Días",
-yearSeries: "Serie de 365 Días",
-
 forMen: "Para Varones",
 forWomen: "Para Mujeres",
 forYouth: "Para Jóvenes",
 family: "Familiar",
-byTopic: "Por Tema",
 newBelievers: "Nuevos creyentes",
 
 readingTime: "Tiempo de lectura",
