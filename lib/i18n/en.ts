@@ -287,8 +287,7 @@ upgradePremium: "🚀 Upgrade to Premium",
 connecting: "Connecting...",
 
 paymentError: "An error occurred while starting the payment.",
-
-backdashboard: "Back to Dashboard",
+backDashboard: "← Back to Dashboard",
 subscription: "Subscription",
 subscriptionDescription:
   "Manage your subscription, update your payment method or cancel anytime.",
