@@ -32,7 +32,14 @@ export default function RegisterPage() {
       alert(error.message);
       return;
     }
-
+if (data.user) {
+  await supabase.from("profiles").insert({
+    id: data.user.id,
+    full_name: "",
+    username: null,
+    avatar_url: null,
+  });
+}
     // Si el usuario ya quedó autenticado, entrar directamente
     if (data.session) {
       router.push("/dashboard");
