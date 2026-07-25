@@ -8,7 +8,7 @@ type Props = {
 
 export default function AppLayout({ children }: Props) {
   return (
-    <div className="flex h-screen bg-slate-950">
+    <div className="flex min-h-screen bg-slate-950 overflow-x-hidden">
 
       <Sidebar />
 
