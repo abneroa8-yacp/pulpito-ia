@@ -1,10 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createClient } from "@/lib/supabase/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-export async function POST() {
+export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient();
 
@@ -14,13 +14,27 @@ export async function POST() {
 
     if (!user) {
       return NextResponse.json(
-        {
-          error: "No autorizado",
-        },
-        {
-          status: 401,
-        }
+        { error: "No autorizado" },
+        { status: 401 }
       );
+    }
+
+    const country =
+      request.headers.get("x-vercel-ip-country") ?? "MX";
+
+    let priceId = process.env.STRIPE_PRICE_MXN!;
+
+    switch (country) {
+      case "US":
+        priceId = process.env.STRIPE_PRICE_USD!;
+        break;
+
+      case "CO":
+        priceId = process.env.STRIPE_PRICE_COP!;
+        break;
+
+      default:
+        priceId = process.env.STRIPE_PRICE_MXN!;
     }
 
     const session = await stripe.checkout.sessions.create({
@@ -40,7 +54,7 @@ export async function POST() {
 
       line_items: [
         {
-          price: process.env.STRIPE_PRICE_MXN!,
+          price: priceId,
           quantity: 1,
         },
       ],
