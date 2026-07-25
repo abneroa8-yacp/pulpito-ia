@@ -19,7 +19,7 @@ export default function ConfiguracionPage() {
     localStorage.setItem("idioma", idioma);
   }, [idioma]);
 
-  const t = languages[idioma];
+ const t = idioma === "es" ? languages.es : languages.en;
 
   async function administrarSuscripcion() {
     try {
@@ -38,7 +38,7 @@ export default function ConfiguracionPage() {
       window.location.href = data.url;
     } catch (error) {
       console.error(error);
-      alert("No se pudo abrir el portal de suscripción.");
+      alert(t.subscriptionError);
     } finally {
       setLoadingPortal(false);
     }
@@ -56,15 +56,15 @@ export default function ConfiguracionPage() {
             href="/dashboard"
             className="text-green-400 hover:text-green-300 font-semibold"
           >
-            ← {t.backHome}
+            {t.backDashboard}
           </a>
         </div>
 
         {/* Idioma */}
         <div className="bg-slate-800 rounded-2xl border border-slate-700 p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">
-            🌐 {t.language}
-          </h2>
+  🌐 {t.language}
+</h2>
 
           <div className="space-y-3">
             <button
@@ -94,11 +94,11 @@ export default function ConfiguracionPage() {
         {/* Suscripción */}
         <div className="bg-slate-800 rounded-2xl border border-green-700 p-6 mb-6">
           <h2 className="text-xl font-semibold mb-4">
-            👑 Suscripción
+            {t.manageSubscription.split(" ")[0]} {t.subscription}
           </h2>
 
           <p className="text-slate-300 mb-5">
-            Administra tu suscripción, cambia tu método de pago o cancélala cuando quieras.
+            {t.subscriptionDescription}
           </p>
 
           <button
@@ -107,8 +107,8 @@ export default function ConfiguracionPage() {
             className="w-full rounded-xl bg-green-600 hover:bg-green-700 transition py-3 font-semibold disabled:opacity-60"
           >
             {loadingPortal
-              ? "Abriendo..."
-              : "👑 Administrar suscripción"}
+              ? t.opening
+              : t.manageSubscription}
           </button>
         </div>
 

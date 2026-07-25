@@ -229,8 +229,7 @@ quickIllustrations: "💡 Ilustraciones",
 quickLibrary: "📚 Biblioteca",
 
 search: "Buscar...",
-
-backHome: "Regresar al inicio",
+backDashboard: "← Volver al Dashboard",
 language: "Idioma",
 about: "Acerca de",
 version: "Versión",
@@ -292,6 +291,17 @@ connecting: "Conectando...",
 paymentError: "Ocurrió un error al iniciar el pago.",
 
 backDashboard: "← Volver al panel",
+subscription: "Suscripción",
+
+subscriptionDescription:
+  "Administra tu suscripción, cambia tu método de pago o cancélala cuando quieras.",
+
+manageSubscription: "👑 Administrar suscripción",
+
+opening: "Abriendo...",
+
+subscriptionError:
+  "No se pudo abrir el portal de suscripción.",
 logout: "Cerrar sesión",
 };
 export default es;

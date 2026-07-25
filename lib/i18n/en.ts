@@ -223,7 +223,7 @@ quickIllustrations: "💡 Illustrations",
 quickLibrary: "📚 Library",
 
 search: "Search...",
-backHome: "Back to Home",
+backHome: "Back to Dashboard",
 language: "Language",
 about: "About",
 version: "Version",
@@ -289,6 +289,16 @@ connecting: "Connecting...",
 paymentError: "An error occurred while starting the payment.",
 
 backDashboard: "← Back to Dashboard",
+subscription: "Subscription",
+subscriptionDescription:
+  "Manage your subscription, update your payment method or cancel anytime.",
+
+manageSubscription: "👑 Manage Subscription",
+
+opening: "Opening...",
+
+subscriptionError:
+  "Could not open the subscription portal.",
 logout: "Log out",
 };
 export default en;
