@@ -39,20 +39,34 @@ export async function POST(req: NextRequest) {
     case "checkout.session.completed": {
       const session = event.data.object as Stripe.Checkout.Session;
 
+      console.log("========== CHECKOUT COMPLETADO ==========");
+      console.log("client_reference_id:", session.client_reference_id);
+      console.log("customer:", session.customer);
+      console.log("subscription:", session.subscription);
+
       const userId = session.client_reference_id;
 
-      if (!userId) break;
+      if (!userId) {
+        console.log("No se recibió client_reference_id");
+        break;
+      }
 
-      await supabase
+      const { data, error } = await supabase
         .from("profiles")
         .update({
           plan: "premium",
           stripe_customer_id: session.customer?.toString() ?? null,
           stripe_subscription_id: session.subscription?.toString() ?? null,
         })
-        .eq("id", userId);
+        .eq("id", userId)
+        .select();
 
-      console.log("Usuario actualizado a Premium:", userId);
+      if (error) {
+        console.error("Error al actualizar usuario:", error);
+      } else {
+        console.log("Usuario actualizado correctamente");
+        console.log(data);
+      }
 
       break;
     }
@@ -60,7 +74,7 @@ export async function POST(req: NextRequest) {
     case "customer.subscription.deleted": {
       const subscription = event.data.object as Stripe.Subscription;
 
-      await supabase
+      const { error } = await supabase
         .from("profiles")
         .update({
           plan: "free",
@@ -68,7 +82,11 @@ export async function POST(req: NextRequest) {
         })
         .eq("stripe_subscription_id", subscription.id);
 
-      console.log("Suscripción cancelada:", subscription.id);
+      if (error) {
+        console.error("Error al cancelar suscripción:", error);
+      } else {
+        console.log("Suscripción cancelada:", subscription.id);
+      }
 
       break;
     }
