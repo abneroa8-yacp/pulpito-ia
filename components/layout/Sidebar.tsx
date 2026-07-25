@@ -29,7 +29,7 @@ export default function Sidebar() {
   const t = languages[idioma];
 
   return (
-    <aside className="w-72 h-screen bg-slate-950 border-r border-slate-800 text-white flex flex-col">
+    <aside className="hidden md:flex w-72 h-screen bg-slate-950 border-r border-slate-800 text-white flex-col">
       <div className="p-8 border-b border-slate-800">
         <h1 className="text-3xl font-bold text-green-500">
           Púlpito IA
