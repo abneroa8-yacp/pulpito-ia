@@ -300,6 +300,7 @@ opening: "Abriendo...",
 
 subscriptionError:
   "No se pudo abrir el portal de suscripción.",
+  premium: "Premium",
 logout: "Cerrar sesión",
 };
 export default es;

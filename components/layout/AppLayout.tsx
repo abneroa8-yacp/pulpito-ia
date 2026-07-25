@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import Sidebar from "./Sidebar";
 import Topbar from "./Topbar";
+import FloatingMenu from "./FloatingMenu";
 
 type Props = {
   children: ReactNode;
@@ -21,7 +22,7 @@ export default function AppLayout({ children }: Props) {
         </main>
 
       </div>
-
+<FloatingMenu />
     </div>
   );
 }

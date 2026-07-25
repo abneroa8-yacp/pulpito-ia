@@ -298,6 +298,7 @@ opening: "Opening...",
 
 subscriptionError:
   "Could not open the subscription portal.",
+  premium: "Premium",
 logout: "Log out",
 };
 export default en;
