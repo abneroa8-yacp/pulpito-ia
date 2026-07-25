@@ -1,12 +1,42 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { createClient } from "@/lib/supabase/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST() {
   try {
+    const supabase = await createClient();
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.json(
+        {
+          error: "No autorizado",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+
     const session = await stripe.checkout.sessions.create({
       mode: "subscription",
+
+      client_reference_id: user.id,
+
+      customer_email: user.email ?? undefined,
+
+      payment_method_types: ["card"],
+
+      payment_method_collection: "always",
+
+      phone_number_collection: {
+        enabled: false,
+      },
 
       line_items: [
         {

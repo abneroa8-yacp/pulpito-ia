@@ -3,13 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import { useLanguage } from "@/hooks/useLanguage";
 
 export default function UserMenu() {
   const supabase = createClient();
   const router = useRouter();
 
+  const { idioma } = useLanguage();
+
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const [plan, setPlan] = useState<"free" | "premium">("free");
 
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -19,8 +23,20 @@ export default function UserMenu() {
         data: { user },
       } = await supabase.auth.getUser();
 
-      if (user?.email) {
+      if (!user) return;
+
+      if (user.email) {
         setEmail(user.email);
+      }
+
+      const { data } = await supabase
+        .from("profiles")
+        .select("plan")
+        .eq("id", user.id)
+        .single();
+
+      if (data?.plan === "premium") {
+        setPlan("premium");
       }
     }
 
@@ -105,21 +121,28 @@ export default function UserMenu() {
             onClick={() => router.push("/perfil")}
             className="w-full text-left px-5 py-4 hover:bg-slate-800 text-white transition"
           >
-            👤 Mi perfil
+            👤 {idioma === "es" ? "Mi perfil" : "My Profile"}
           </button>
 
           <button
             onClick={() => router.push("/premium")}
             className="w-full text-left px-5 py-4 hover:bg-slate-800 text-white transition"
           >
-            ⭐ Premium
+            {plan === "premium" ? "👑" : "🟢"}{" "}
+            {idioma === "es"
+              ? plan === "premium"
+                ? "Plan Premium"
+                : "Plan Free"
+              : plan === "premium"
+              ? "Premium Plan"
+              : "Free Plan"}
           </button>
 
           <button
             onClick={logout}
             className="w-full text-left px-5 py-4 hover:bg-red-600 text-white transition"
           >
-            🚪 Cerrar sesión
+            🚪 {idioma === "es" ? "Cerrar sesión" : "Sign Out"}
           </button>
 
         </div>
