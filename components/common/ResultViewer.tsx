@@ -51,13 +51,11 @@ export default function ResultViewer({
             remarkPlugins={[remarkGfm]}
             components={{
 
-              h1: ({ children }) => (
-                <div className="mt-10 mb-6 rounded-xl border border-green-500/30 bg-green-500/10 px-6 py-4">
-                  <h1 className="text-3xl font-extrabold text-green-400">
-                    {children}
-                  </h1>
-                </div>
-              ),
+            <div className="mt-6 mb-4 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3">
+  <h1 className="text-2xl md:text-3xl font-bold text-green-400">
+    {children}
+  </h1>
+</div>
 
               h2: ({ children }) => (
                 <div className="mt-8 mb-4 border-l-4 border-green-500 pl-4">
