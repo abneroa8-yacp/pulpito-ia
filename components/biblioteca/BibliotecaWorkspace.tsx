@@ -34,11 +34,15 @@ export default function BibliotecaWorkspace() {
 
   const t = languages[idioma];
 
-  const filteredDocuments = documents.filter(
-    (doc) =>
-      doc.title.toLowerCase().includes(search.toLowerCase()) ||
-      doc.content.toLowerCase().includes(search.toLowerCase())
+const filteredDocuments = documents.filter((doc) => {
+  const title = doc.title ?? "";
+  const content = doc.content ?? "";
+
+  return (
+    title.toLowerCase().includes(search.toLowerCase()) ||
+    content.toLowerCase().includes(search.toLowerCase())
   );
+});
 
   async function deleteDocument(id: string) {
     await eliminarSermon(id);
