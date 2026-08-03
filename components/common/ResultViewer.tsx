@@ -41,9 +41,9 @@ export default function ResultViewer({
 
       </div>
 
-      <div className="bg-slate-950 p-8">
+      <div className="overflow-x-auto bg-slate-950 p-4 md:p-8">
 
-        <article className="prose prose-invert max-w-none">
+       <article className="prose prose-invert max-w-none break-words overflow-x-auto">
 
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
@@ -105,11 +105,11 @@ export default function ResultViewer({
                 <hr className="my-10 border-slate-700" />
               ),
 
-              code: ({ children }) => (
-                <code className="rounded bg-slate-800 px-1 py-0.5 text-green-300">
-                  {children}
-                </code>
-              ),
+            code: ({ children }) => (
+  <code className="whitespace-pre-wrap break-all rounded bg-slate-800 px-1 py-0.5 text-green-300">
+    {children}
+  </code>
+),
 
             }}
           >
