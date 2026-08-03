@@ -155,8 +155,16 @@ export default function BibliotecaWorkspace() {
             <div className="mb-8 flex items-center justify-between">
               <div>
                 <span className="rounded-full bg-green-600/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-green-400">
-                  {idioma === "es" ? "Documento" : "Document"}
-                </span>
+  {{
+    sermon: "Sermón",
+    estudio: "Estudio",
+    exegesis: "Exégesis",
+    devocional: "Devocional",
+    griego: "Griego",
+    hebreo: "Hebreo",
+    ilustracion: "Ilustración",
+  }[doc.type]}
+</span>
 
                 <h2 className="mt-3 text-5xl font-extrabold tracking-tight text-sky-400">
   {selected.title}
