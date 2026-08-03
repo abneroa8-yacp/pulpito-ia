@@ -56,11 +56,11 @@ export async function getLibraryFromSupabase(): Promise<LibraryDocument[]> {
     console.error("Error cargando biblioteca:", error);
     return [];
   }
- return (data ?? []).map((item) => ({
+return (data ?? []).map((item) => ({
   id: item.id,
-  title: item.titulo,
-  type: item.tipo,
-  content: item.contenido,
+  title: item.titulo ?? "",
+  type: (item.tipo ?? "sermon") as LibraryDocument["type"],
+  content: item.contenido ?? "",
   createdAt: item.created_at,
 }));
 }
