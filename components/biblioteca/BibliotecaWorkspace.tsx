@@ -160,19 +160,19 @@ const filteredDocuments = documents.filter((doc) => {
             <div className="mb-8 flex items-center justify-between">
               <div>
                 <span className="rounded-full bg-green-600/20 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-green-400">
-{doc.type === "sermon"
+{selected.type === "sermon"
   ? "Sermón"
-  : doc.type === "estudio"
+  : selected.type === "estudio"
   ? "Estudio"
-  : doc.type === "exegesis"
+  : selected.type === "exegesis"
   ? "Exégesis"
-  : doc.type === "devocional"
+  : selected.type === "devocional"
   ? "Devocional"
-  : doc.type === "griego"
+  : selected.type === "griego"
   ? "Griego"
-  : doc.type === "hebreo"
+  : selected.type === "hebreo"
   ? "Hebreo"
-  : doc.type === "ilustracion"
+  : selected.type === "ilustracion"
   ? "Ilustración"
   : "Documento"}
 </span>
