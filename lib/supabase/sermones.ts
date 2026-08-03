@@ -3,7 +3,8 @@ import { createClient } from "@/lib/supabase/client";
 export async function guardarSermon(
   titulo: string,
   tema: string,
-  contenido: string
+  contenido: string,
+  tipo: string = "sermon"
 ) {
   const supabase = createClient();
 
@@ -19,11 +20,12 @@ export async function guardarSermon(
   }
 
   const { error } = await supabase.from("sermones").insert({
-    user_id: user.id,
-    titulo,
-    tema,
-    contenido,
-  });
+  user_id: user.id,
+  titulo,
+  tema,
+  contenido,
+  tipo,
+});
 
   if (error) throw error;
 }
