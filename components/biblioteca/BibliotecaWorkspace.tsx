@@ -37,10 +37,11 @@ export default function BibliotecaWorkspace() {
 const filteredDocuments = documents.filter((doc) => {
   const title = doc.title ?? "";
   const content = doc.content ?? "";
+  const query = search.toLowerCase();
 
   return (
-    title.toLowerCase().includes(search.toLowerCase()) ||
-    content.toLowerCase().includes(search.toLowerCase())
+    title.toLowerCase().includes(query) ||
+    content.toLowerCase().includes(query)
   );
 });
 
