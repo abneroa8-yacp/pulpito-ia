@@ -28,18 +28,20 @@ export default function ResultViewer({
   return (
     <div className="mt-10 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900">
 
-      <div className="flex items-center justify-between border-b border-slate-800 px-6 py-4">
+     <div className="flex flex-col gap-4 border-b border-slate-800 px-4 py-4 md:flex-row md:items-center md:justify-between">
 
-        <h2 className="text-xl font-bold text-white">
-          📖 {title}
-        </h2>
+  <h2 className="text-xl font-bold text-white">
+    📖 {title}
+  </h2>
 
-        <ResultToolbar
-          titulo={content.match(/^# (.*)$/m)?.[1] || title}
-          contenido={content}
-        />
+  <div className="w-full md:w-auto overflow-x-auto">
+    <ResultToolbar
+      titulo={content.match(/^# (.*)$/m)?.[1] || title}
+      contenido={content}
+    />
+  </div>
 
-      </div>
+</div>
 
       <div className="overflow-x-auto bg-slate-950 p-4 md:p-8">
 
