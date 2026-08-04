@@ -1,3 +1,4 @@
+"use client";
 import AppLayout from "@/components/layout/AppLayout";
 import { useLanguage } from "@/hooks/useLanguage";
 
