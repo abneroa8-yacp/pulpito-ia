@@ -111,8 +111,8 @@ export default function ResultViewer({
   </code>
 ),
 table: ({ children }) => (
-  <div className="my-6 w-full overflow-x-auto">
-    <table className="min-w-full border-collapse text-sm">
+  <div className="my-6 max-w-full overflow-x-auto">
+    <table className="w-full border-collapse text-xs md:text-sm table-auto">
       {children}
     </table>
   </div>
@@ -137,13 +137,13 @@ tr: ({ children }) => (
 ),
 
 th: ({ children }) => (
-  <th className="whitespace-nowrap px-4 py-2 text-left font-bold text-white">
+  <th className="px-3 py-2 text-left font-bold text-white break-words whitespace-normal align-top">
     {children}
   </th>
 ),
 
 td: ({ children }) => (
-  <td className="px-4 py-2 whitespace-nowrap text-slate-200">
+  <td className="px-3 py-2 text-slate-200 break-words whitespace-normal align-top">
     {children}
   </td>
 ),
