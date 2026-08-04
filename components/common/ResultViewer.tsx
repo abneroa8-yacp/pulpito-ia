@@ -44,8 +44,7 @@ export default function ResultViewer({
 </div>
 
       <div className="overflow-x-auto bg-slate-950 p-4 md:p-8">
-
-       <article className="prose prose-invert max-w-none break-words overflow-x-auto">
+<article className="prose prose-invert max-w-none break-all overflow-hidden">
 
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
@@ -73,7 +72,7 @@ export default function ResultViewer({
               ),
 
               p: ({ children }) => (
-                <p className="mb-5 leading-8 text-slate-200">
+              <p className="mb-5 whitespace-pre-wrap break-words break-all overflow-hidden leading-8 text-slate-200">
                   {children}
                 </p>
               ),
@@ -91,7 +90,7 @@ export default function ResultViewer({
               ),
 
               blockquote: ({ children }) => (
-                <blockquote className="my-6 rounded-lg border-l-4 border-green-500 bg-slate-900 p-4 italic text-slate-300">
+                <blockquote className="my-6 overflow-hidden break-all whitespace-pre-wrap rounded-lg border-l-4 border-green-500 bg-slate-900 p-4 italic text-slate-300">
                   {children}
                 </blockquote>
               ),
