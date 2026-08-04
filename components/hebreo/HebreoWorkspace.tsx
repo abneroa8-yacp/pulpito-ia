@@ -32,7 +32,12 @@ export default function HebreoWorkspace() {
     }
 
     const referencia = data.palabra.trim();
+console.log("REFERENCIA:", referencia);
 
+const soloCapitulo =
+  /^([1-3]\s+)?[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*\s+\d+$/.test(referencia);
+
+console.log("SOLO CAPITULO:", soloCapitulo);
     // Bloquear capítulos completos (ej. Salmo 23)
 const soloCapitulo =
   /^([1-3]\s+)?[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*\s+\d+$/.test(
