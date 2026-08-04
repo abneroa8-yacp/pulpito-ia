@@ -14,7 +14,7 @@ export default function ResultToolbar({
   contenido,
 }: Props) {
   return (
-    <div className="flex flex-wrap gap-3">
+  <div className="grid w-full grid-cols-2 gap-2 md:flex md:w-auto md:flex-wrap md:gap-3">
 
       <button
         onClick={() => navigator.clipboard.writeText(contenido)}
