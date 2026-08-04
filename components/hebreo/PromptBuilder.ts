@@ -126,7 +126,30 @@ Ofrece una traducción palabra por palabra.
 
 # 🔍 Significado léxico
 
-Explica el significado de cada término importante.
+Para cada palabra utiliza EXACTAMENTE este formato:
+
+## Palabra
+
+**Hebreo:**
+...
+
+**Transliteración:**
+...
+
+**Significado:**
+...
+
+**Strong:**
+...
+
+**Explicación:**
+...
+
+Nunca escribas una línea larga como:
+
+נֶפֶשׁ — nephesh — "alma"
+
+Cada dato debe ir en una línea diferente.
 
 # 🔢 Números Strong
 
