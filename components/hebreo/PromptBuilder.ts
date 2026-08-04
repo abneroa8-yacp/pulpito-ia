@@ -57,6 +57,12 @@ Include this section only if requested.
 
 Include this section only if requested.
 
+If the user enters a complete passage, analyze ONLY the 5–10 most important Hebrew words or expressions.
+
+Do NOT analyze every word of long passages.
+
+If the user enters a single Hebrew word, provide a complete morphological analysis.
+
 # 📚 Usage in the Old Testament
 
 Mention where the word appears and how it is used throughout the Old Testament.
@@ -78,6 +84,18 @@ Include several concrete applications useful for teaching and preaching.
 Conclude with a pastoral summary appropriate for sermons.
 
 Provide a clear, academically sound, and well-organized response.
+
+IMPORTANT:
+
+If the input is a complete passage, limit the morphology table to a maximum of 10 key terms.
+
+Prioritize completing the sections:
+- Exegetical Observations
+- Application for Study and Preaching
+- Practical Applications
+- Homiletical Conclusion
+
+Do not spend most of the response analyzing every Hebrew word.
 `;
   }
 
@@ -154,5 +172,18 @@ Incluye varias aplicaciones concretas útiles para enseñar y predicar.
 Concluye con un resumen pastoral apropiado para la predicación.
 
 Entrega una respuesta clara, académica, bien estructurada y útil para predicadores, maestros y estudiantes de la Biblia.
+
+IMPORTANTE:
+
+Si el usuario introduce un pasaje completo, limita la tabla morfológica a un máximo de 10 términos clave.
+
+Prioriza completar siempre las siguientes secciones:
+
+- Observaciones Exegéticas
+- Aplicación para el estudio y la predicación
+- Aplicaciones prácticas
+- Conclusión homilética
+
+No dediques la mayor parte de la respuesta a analizar todas las palabras hebreas.
 `;
 }
