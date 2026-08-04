@@ -28,13 +28,13 @@ export default function ResultViewer({
   return (
     <div className="mt-10 overflow-hidden rounded-2xl border border-slate-800 bg-slate-900">
 
-     <div className="flex flex-col gap-4 border-b border-slate-800 px-4 py-4 md:flex-row md:items-center md:justify-between">
+    <div className="flex flex-col gap-4 border-b border-slate-800 px-4 py-4 md:flex-row md:items-start md:justify-between">
 
   <h2 className="text-xl font-bold text-white">
     📖 {title}
   </h2>
 
-  <div className="w-full md:w-auto overflow-x-auto">
+  <div className="w-full">
     <ResultToolbar
       titulo={content.match(/^# (.*)$/m)?.[1] || title}
       contenido={content}
