@@ -39,15 +39,9 @@ const soloCapitulo =
 
 console.log("SOLO CAPITULO:", soloCapitulo);
     alert("SOLO CAPITULO = " + soloCapitulo);
+alert("PRUEBA");
 
-    if (soloCapitulo) {
-      alert(
-        idioma === "en"
-          ? "Hebrew analysis currently supports a single word, one verse, or a maximum of two verses."
-          : "El análisis de Hebreo Bíblico solo admite una palabra, un versículo o un máximo de dos versículos."
-      );
-      return;
-    }
+return;
 
     // Bloquear rangos mayores a 2 versículos
     const rango = referencia.match(/:(\d+)-(\d+)$/);
