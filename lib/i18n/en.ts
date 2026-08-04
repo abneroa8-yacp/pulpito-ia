@@ -300,5 +300,13 @@ subscriptionError:
   "Could not open the subscription portal.",
   premium: "Premium",
 logout: "Log out",
+  profileTitle: "My Profile",
+profileDescription: "Soon you'll be able to manage all your information from here.",
+profileUpcomingFeatures: "Upcoming Features",
+profileChangePhoto: "Change profile picture",
+profileChangeName: "Change name",
+profileUsername: "Choose username (@username)",
+profileChangePassword: "Change password",
+profileManagePremium: "Manage Premium subscription",
 };
 export default en;
