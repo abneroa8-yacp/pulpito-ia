@@ -302,5 +302,13 @@ subscriptionError:
   "No se pudo abrir el portal de suscripción.",
   premium: "Premium",
 logout: "Cerrar sesión",
+  profileTitle: "Mi Perfil",
+profileDescription: "Próximamente podrás administrar toda tu información desde aquí.",
+profileUpcomingFeatures: "Funciones próximas",
+profileChangePhoto: "Cambiar foto de perfil",
+profileChangeName: "Cambiar nombre",
+profileUsername: "Elegir nombre de usuario (@usuario)",
+profileChangePassword: "Cambiar contraseña",
+profileManagePremium: "Administrar suscripción Premium",
 };
 export default es;
