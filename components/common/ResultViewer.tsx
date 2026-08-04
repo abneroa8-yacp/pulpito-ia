@@ -51,19 +51,19 @@ export default function ResultViewer({
            components={{
   h1: ({ children }) => (
     <div className="mt-6 mb-4 rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3">
-      <h1 className="text-2xl md:text-3xl font-bold text-green-400 break-words">
+      <h1 className="text-2xl md:text-3xl font-extrabold text-green-400 break-words whitespace-normal">
         {children}
       </h1>
     </div>
   ),
 
   h2: ({ children }) => (
-    <div className="mt-8 mb-4 border-l-4 border-green-500 pl-4">
-      <h2 className="text-xl md:text-2xl font-bold text-white break-words">
-        {children}
-      </h2>
-    </div>
-  ),
+  <div className="mt-8 mb-4 border-l-4 border-green-500 pl-4 overflow-hidden">
+    <h2 className="text-xl md:text-2xl font-bold text-white break-words whitespace-normal">
+      {children}
+    </h2>
+  </div>
+),
 
               h3: ({ children }) => (
                 <h3 className="mt-6 text-xl font-semibold text-green-300">
