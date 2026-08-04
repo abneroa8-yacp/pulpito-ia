@@ -110,7 +110,43 @@ export default function ResultViewer({
     {children}
   </code>
 ),
+table: ({ children }) => (
+  <div className="my-6 w-full overflow-x-auto">
+    <table className="min-w-full border-collapse text-sm">
+      {children}
+    </table>
+  </div>
+),
 
+thead: ({ children }) => (
+  <thead className="bg-slate-800">
+    {children}
+  </thead>
+),
+
+tbody: ({ children }) => (
+  <tbody>
+    {children}
+  </tbody>
+),
+
+tr: ({ children }) => (
+  <tr className="border-b border-slate-700">
+    {children}
+  </tr>
+),
+
+th: ({ children }) => (
+  <th className="whitespace-nowrap px-4 py-2 text-left font-bold text-white">
+    {children}
+  </th>
+),
+
+td: ({ children }) => (
+  <td className="px-4 py-2 whitespace-nowrap text-slate-200">
+    {children}
+  </td>
+),
             }}
           >
             {content}
