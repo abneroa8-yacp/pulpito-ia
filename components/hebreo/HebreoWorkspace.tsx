@@ -1,168 +1,89 @@
-"use client";
+async function generar() {
+  if (!data.palabra.trim()) {
+    alert(
+      idioma === "en"
+        ? "Please enter a Hebrew word or Bible passage."
+        : "Escribe una palabra hebrea o un pasaje bíblico."
+    );
+    return;
+  }
 
-import { useState } from "react";
-import HebreoForm from "./HebreoForm";
-import { HebrewRequest } from "./types";
-import ResultViewer from "@/components/common/ResultViewer";
-import { saveDocument } from "@/lib/storage/library";
-import { useLanguage } from "@/hooks/useLanguage";
+  const referencia = data.palabra.trim();
 
-export default function HebreoWorkspace() {
-  const { t, idioma } = useLanguage();
+  // Bloquear capítulos completos (ej. Salmo 23, Génesis 1)
+  const soloCapitulo =
+    /^([1-3]\s+)?[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*\s+\d+$/.test(referencia);
 
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState("");
+  if (soloCapitulo) {
+    alert(
+      idioma === "en"
+        ? "Only one verse or a maximum of two verses can be analyzed."
+        : "Solo se puede analizar un versículo o un máximo de dos versículos."
+    );
+    return;
+  }
 
-  const [data, setData] = useState<HebrewRequest>({
-    palabra: "",
-    version: "RVR1960",
-    nivel: "Intermedio",
-    incluirStrong: true,
-    incluirMorfologia: true,
-  });
+  // Bloquear rangos mayores de 2 versículos
+  const rango = referencia.match(/:(\d+)-(\d+)$/);
 
-  async function generar() {
-    if (!data.palabra.trim()) {
+  if (rango) {
+    const inicio = parseInt(rango[1], 10);
+    const fin = parseInt(rango[2], 10);
+
+    if (fin - inicio >= 2) {
       alert(
         idioma === "en"
-          ? "Please enter a Hebrew word or Bible passage."
-          : "Escribe una palabra hebrea o un pasaje bíblico."
+          ? "Only up to two verses are allowed."
+          : "Solo se permite analizar hasta dos versículos."
       );
       return;
     }
-
-    const referencia = data.palabra.trim();
-console.log("REFERENCIA:", referencia);
-
-const soloCapitulo =
-  /^([1-3]\s+)?[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*\s+\d+$/.test(referencia);
-
-console.log("SOLO CAPITULO:", soloCapitulo);
-    alert("SOLO CAPITULO = " + soloCapitulo);
-alert("PRUEBA");
-
-return;
-
-    // Bloquear rangos mayores a 2 versículos
-    const rango = referencia.match(/:(\d+)-(\d+)$/);
-
-    if (rango) {
-      const inicio = Number(rango[1]);
-      const fin = Number(rango[2]);
-
-      if (fin - inicio > 1) {
-        alert(
-          idioma === "en"
-            ? "Only up to two verses are allowed."
-            : "Solo se permite analizar hasta dos versículos."
-        );
-        return;
-      }
-    }
-
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/sermon/chat", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          tipo: "hebreo",
-          idioma,
-        }),
-      });
-
-      const json = await res.json();
-
-      if (json.error) {
-        alert(json.error);
-        return;
-      }
-
-      const contenido =
-        json.result ||
-        json.sermon ||
-        "No hubo respuesta.";
-
-      setResult(contenido);
-
-      saveDocument({
-        title: data.palabra,
-        type: "hebreo",
-        content: contenido,
-      });
-
-    } catch (error) {
-      console.error(error);
-
-      alert(
-        idioma === "en"
-          ? "Error connecting to the AI."
-          : "❌ Error al conectar con la IA."
-      );
-    } finally {
-      setLoading(false);
-    }
   }
 
-  return (
-    <div className="space-y-6">
-      <h1 className="text-4xl font-bold text-white">
-        🇮🇱 {t.hebrewTitle}
-      </h1>
+  setLoading(true);
 
-      <HebreoForm
-        value={data}
-        onChange={setData}
-      />
+  try {
+    const res = await fetch("/api/sermon/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...data,
+        tipo: "hebreo",
+        idioma,
+      }),
+    });
 
-      <div className="flex flex-wrap gap-4">
+    const json = await res.json();
 
-        <button
-          onClick={generar}
-          disabled={loading}
-          className="rounded-xl bg-green-600 hover:bg-green-700 disabled:bg-slate-700 disabled:cursor-not-allowed px-8 py-4 text-white font-semibold transition"
-        >
-          {loading
-            ? `⏳ ${t.generatingHebrew}`
-            : `🇮🇱 ${t.generateHebrew}`}
-        </button>
+    if (json.error) {
+      alert(json.error);
+      return;
+    }
 
-        <button
-          onClick={generar}
-          disabled={loading || !result}
-          className="rounded-xl bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 disabled:cursor-not-allowed px-8 py-4 text-white font-semibold transition"
-        >
-          🔄 {t.regenerate}
-        </button>
+    const contenido =
+      json.result ||
+      json.sermon ||
+      "No hubo respuesta.";
 
-        <button
-          onClick={() => {
-            setResult("");
+    setResult(contenido);
 
-            setData({
-              palabra: "",
-              version: "RVR1960",
-              nivel: "Intermedio",
-              incluirStrong: true,
-              incluirMorfologia: true,
-            });
-          }}
-          className="rounded-xl bg-slate-700 hover:bg-slate-600 px-8 py-4 text-white font-semibold transition"
-        >
-          🆕 {t.newHebrew}
-        </button>
+    saveDocument({
+      title: data.palabra,
+      type: "hebreo",
+      content: contenido,
+    });
 
-      </div>
+  } catch (error) {
+    console.error(error);
 
-      <ResultViewer
-        loading={loading}
-        content={result}
-        title="Hebreo Bíblico"
-      />
-    </div>
-  );
+    alert(
+      idioma === "en"
+        ? "Error connecting to the AI."
+        : "❌ Error al conectar con la IA."
+    );
+  } finally {
+    setLoading(false);
+  }
 }
