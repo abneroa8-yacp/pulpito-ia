@@ -31,6 +31,38 @@ export default function HebreoWorkspace() {
       return;
     }
 
+    const referencia = data.palabra.trim();
+
+    // Bloquear capítulos completos (ej. Salmo 23)
+    const soloCapitulo =
+      /^[1-3]?\s?[A-Za-zÁÉÍÓÚáéíóúÑñ]+\s+\d+$/.test(referencia);
+
+    if (soloCapitulo) {
+      alert(
+        idioma === "en"
+          ? "Hebrew analysis currently supports a single word, one verse, or a maximum of two verses."
+          : "El análisis de Hebreo Bíblico solo admite una palabra, un versículo o un máximo de dos versículos."
+      );
+      return;
+    }
+
+    // Bloquear rangos mayores a 2 versículos
+    const rango = referencia.match(/:(\d+)-(\d+)$/);
+
+    if (rango) {
+      const inicio = Number(rango[1]);
+      const fin = Number(rango[2]);
+
+      if (fin - inicio > 1) {
+        alert(
+          idioma === "en"
+            ? "Only up to two verses are allowed."
+            : "Solo se permite analizar hasta dos versículos."
+        );
+        return;
+      }
+    }
+
     setLoading(true);
 
     try {
