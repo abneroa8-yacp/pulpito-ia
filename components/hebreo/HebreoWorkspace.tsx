@@ -38,11 +38,6 @@ const soloCapitulo =
   /^([1-3]\s+)?[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*\s+\d+$/.test(referencia);
 
 console.log("SOLO CAPITULO:", soloCapitulo);
-    // Bloquear capítulos completos (ej. Salmo 23)
-const soloCapitulo =
-  /^([1-3]\s+)?[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*\s+\d+$/.test(
-    referencia
-  );
 
     if (soloCapitulo) {
       alert(
