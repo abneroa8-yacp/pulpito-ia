@@ -43,11 +43,11 @@ Provide the correct transliteration.
 
 # 🗣 Pronunciation
 
-Explain how the word is pronounced.
+Explain how the word or passage is pronounced.
 
 # 📖 Meaning
 
-Describe the primary meaning and important nuances of the term.
+Describe the primary meaning and important nuances of the Hebrew terms.
 
 # 🔢 Strong's Number
 
@@ -59,15 +59,23 @@ Include this section only if requested.
 
 # 📚 Usage in the Old Testament
 
-Mention where the word appears and how it is used.
+Mention where the word appears and how it is used throughout the Old Testament.
 
 # 🔍 Exegetical Observations
 
-Explain the significance of the term within its biblical context.
+Explain the significance of the passage within its biblical context.
 
-# ❤️ Practical Application
+# ❤️ Application for Study and Preaching
 
-Conclude with a practical application for Bible study and preaching.
+Develop practical pastoral applications.
+
+## Practical Applications
+
+Include several concrete applications useful for teaching and preaching.
+
+## Homiletical Conclusion
+
+Conclude with a pastoral summary appropriate for sermons.
 
 Provide a clear, academically sound, and well-organized response.
 `;
@@ -115,7 +123,7 @@ Explica cómo se pronuncia.
 
 # 📖 Significado
 
-Describe el significado principal y los matices del término.
+Describe el significado principal y los matices más importantes del término o pasaje.
 
 # 🔢 Número Strong
 
@@ -127,16 +135,24 @@ Inclúyela únicamente si fue solicitada.
 
 # 📚 Uso en el Antiguo Testamento
 
-Menciona dónde aparece y cómo se utiliza.
+Menciona dónde aparece y cómo se utiliza a lo largo del Antiguo Testamento.
 
 # 🔍 Observaciones Exegéticas
 
-Explica la importancia del término dentro del contexto bíblico.
+Explica la importancia del texto dentro de su contexto bíblico.
 
-# ❤️ Aplicación
+# ❤️ Aplicación para el estudio y la predicación
 
-Concluye con una aplicación práctica para el estudio y la predicación.
+Desarrolla aplicaciones pastorales y ministeriales.
 
-Entrega una respuesta clara, académica y bien estructurada.
+## Aplicaciones prácticas
+
+Incluye varias aplicaciones concretas útiles para enseñar y predicar.
+
+## Conclusión homilética
+
+Concluye con un resumen pastoral apropiado para la predicación.
+
+Entrega una respuesta clara, académica, bien estructurada y útil para predicadores, maestros y estudiantes de la Biblia.
 `;
 }
