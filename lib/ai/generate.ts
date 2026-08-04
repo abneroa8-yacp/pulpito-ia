@@ -17,6 +17,10 @@ console.log("PRIMEROS 300 CARACTERES:");
 console.log(response.output_text.slice(0, 300));
 console.log("ÚLTIMOS 300 CARACTERES:");
 console.log(response.output_text.slice(-300));
+console.log("FINISH REASON:");
+console.log(response.output?.[0]?.finish_reason);
 
+console.log("USAGE:");
+console.log(response.usage);
   return response.output_text;
 }
