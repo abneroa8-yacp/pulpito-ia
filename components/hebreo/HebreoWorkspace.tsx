@@ -38,6 +38,7 @@ const soloCapitulo =
   /^([1-3]\s+)?[A-Za-zÁÉÍÓÚáéíóúÑñ]+(?:\s+[A-Za-zÁÉÍÓÚáéíóúÑñ]+)*\s+\d+$/.test(referencia);
 
 console.log("SOLO CAPITULO:", soloCapitulo);
+    alert("SOLO CAPITULO = " + soloCapitulo);
 
     if (soloCapitulo) {
       alert(
